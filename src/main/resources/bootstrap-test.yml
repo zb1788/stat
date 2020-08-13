@@ -1,0 +1,16 @@
+#测试环境配置
+# ************************ 基础配置 ************************
+#优教通基础配置文件
+yjt:
+  basic:
+    config:
+      file: /etc/vcom/yjtconfig.properties
+
+# ************************ logback日志配置 ************************
+log:
+  # 日志级别
+  level: DEBUG
+  # 日志目录
+  path: opt/service_app/@project.build.finalName@/logs
+  # 日志文件名称
+  name: statmanage

@@ -1,0 +1,28 @@
+#生产环境配置
+# ************************ 基础配置 ************************
+#优教通基础配置文件
+yjt:
+  basic:
+    config:
+      file: /etc/vcom/yjtconfig.properties
+
+# ************************ logback日志配置 ************************
+log:
+  # 日志级别
+  level: ${logging.level}
+  # 日志目录
+  path: /opt/service_app/@project.build.finalName@/logs
+  # 日志文件名称
+  name: nsdc-manage-api
+
+swagger:
+  enable: false
+
+mybatis-plus:
+  #XML
+  #mapper-locations: classpath:mapper/*Mapper.xml
+  #实体扫描，多个package用逗号或者分号分割
+  #type-aliases-package: com.boz.bdmin.project.sys.user.entity
+  configuration:
+    #这个配置会将sql答应出来，在开发或者测试的时候可以用
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

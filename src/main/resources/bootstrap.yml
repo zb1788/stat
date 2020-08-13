@@ -1,0 +1,56 @@
+spring:
+  # Spring Boot启动时激活的bootstrap-*.properties文件模式 [dev:开发模式,test:测试模式,prod:生产模式]
+  profiles:
+    active: @profileActive@
+  jackson:
+    # 时间格式化
+    date-format: yyyy-MM-dd HH:mm:ss
+    # 时区
+    time-zone: GMT+8
+    # null字段不返回前端
+    default-property-inclusion: non_null
+  # 应用程序名称
+  application:
+    name: nsdc-manage-api
+  datasource:
+    druid:
+      url: jdbc:postgresql://${greenplum.ip}:${greenplum.port}/${greenplum.statcenter.db}
+      username: ${greenplum.statcenter.username}
+      password: ${greenplum.statcenter.password}
+      type: com.alibaba.druid.pool.DruidDataSource
+      maxOpenPreparedStatements: 100
+      driver-class-name: org.postgresql.Driver
+      min-idle: 5
+      max-active: 20
+      initial-size: 5
+      max-wait: 6000
+  cloud:
+    nacos:
+      # Nacos注册中心地址
+      discovery:
+        server-addr: ${NACOS_IP}:${NACOS_PORT}
+      # Nacos配置中心地址
+      config:
+        server-addr: ${NACOS_IP}:${NACOS_PORT}
+#        ext-config:
+#          - data-id: stat-conf.properties
+#            group: nacosdemo-group
+#            refresh: true
+        # 配置的后缀
+        file-extension: yml
+        # 配置分组
+#        group: nacosdemo-group
+# 项目名
+server:
+  port: 24011
+  servlet:
+    context-path: /statmanage
+
+
+# 日志配置文件
+logging:
+  config: classpath:stat-logback.xml
+
+id-generator:
+  zookeeper:
+    server-lists: 192.168.119.190:2181

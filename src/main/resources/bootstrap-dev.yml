@@ -1,0 +1,42 @@
+#开发环境配置
+# ************************ 基础配置 ************************
+#优教通基础配置文件
+yjt:
+  basic:
+    config:
+      file: D://etc//vcom//base_config.properties
+
+# ************************ logback日志配置 ************************
+log:
+  # 日志级别
+  level: debug
+  # 日志目录
+  path: D:/opt/service_app/@project.build.finalName@/logs
+  # 日志文件名称
+  name: statmanage
+
+
+spring:
+  datasource:
+    druid:
+      url: jdbc:postgresql://${greenplum.ip}:${greenplum.port}/${greenplum.statcenter.db}
+      username: ${greenplum.statcenter.username}
+      password: ${greenplum.statcenter.password}
+      type: com.alibaba.druid.pool.DruidDataSource
+      maxOpenPreparedStatements: 100
+      driver-class-name: org.postgresql.Driver
+      min-idle: 5
+      max-active: 20
+      initial-size: 5
+      max-wait: 6000
+swagger:
+  enable: true
+
+mybatis-plus:
+  #XML
+  #mapper-locations: classpath:mapper/*Mapper.xml
+  #实体扫描，多个package用逗号或者分号分割
+  #type-aliases-package: com.boz.bdmin.project.sys.user.entity
+  configuration:
+    #这个配置会将sql答应出来，在开发或者测试的时候可以用
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
